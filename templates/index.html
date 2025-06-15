@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="POST" action="/add">
+    <input type="text" name="name" placeholder="Task name" required>
+    <input type="number" name="priority" placeholder="Priority" required>
+    <button type="submit">Add Task</button>
+</form>
+
+<table>
+    <tr><th>ID</th><th>Name</th><th>Priority</th><th>Status</th><th>Actions</th></tr>
+    {% for task in tasks %}
+    <tr>
+        <td>{{ task[0] }}</td>
+        <td>{{ task[1] }}</td>
+        <td>{{ task[2] }}</td>
+        <td>{{ task[3] }}</td>
+        <td>
+            <a href="/complete/{{ task[0] }}">✓</a>
+            <a href="/delete/{{ task[0] }}">🗑</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
